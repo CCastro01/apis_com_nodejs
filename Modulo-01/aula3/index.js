@@ -34,9 +34,16 @@ function resolverUsuario(erro, usuario){
 obterUsuario(function resolverUsuario(error, usuario){
     //null || 0 || 0 === false
     if(error){
-        console.error("Deu ruim mano", error)
+        console.error("Deu ruim em Usuario", error)
         return
     }
+
+    obterTelefone(usuario.id, function resolverTelefone(error1, telefone){
+        if(error){
+            console.error("Deu ruim em Telefone", error)
+            return
+        }
+    })
 })
 // const telefone = obterTelefone(usuario.id)
 
