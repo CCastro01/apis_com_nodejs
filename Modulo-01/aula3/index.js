@@ -6,7 +6,7 @@
 
 function obterUsuario(callback) {
         setTimeout(() => {
-            return callback({
+            return callback(null,{
                 id: 1,
                 nome: "Aladin",
                 dataNascimento: new Date()
