@@ -10,6 +10,8 @@ function obterUsuario(callback) {
     return new Promise(function resolvePromise(resolve, reject) {
 
         setTimeout(() => {
+            // return reject(new Error("Agora lacou"))
+
             return resolve({
                 id: 1,
                 nome: "Aladin",
@@ -22,13 +24,15 @@ function obterUsuario(callback) {
 
 }
 
-function obterTelefone(idUsuario, callback) {
-    setTimeout(() => {
-        return callback(null, {
-            telefone: '994856142',
-            ddd: 85
-        })
-    }, 2000);
+function obterTelefone(idUsuario) {
+    return new Promise(function resolverPromise(resolve, reject){
+        setTimeout(() => {
+            return resolve({
+                telefone: '994856142',
+                ddd: 85
+            })
+        }, 2000);
+    })
 }
 
 function obterEndereco(idUsuario, callback) {
@@ -54,6 +58,18 @@ const usuarioPromise = obterUsuario()
 //para manipular o sucesso usamos a função .then
 //para manipular erros, usamos o .catch
 usuarioPromise
+    .then(function(usuario){
+        return obterTelefone(usuario.id)
+        .then(function resolverTelefone(result){
+            return{
+                usuario:{
+                    nome: usuario.nome,
+                    id: usuario.id
+                },
+                telefone: result
+            }
+        })
+    })
     .then(function (resultado) {
         console.log('resultado', resultado)
     })
