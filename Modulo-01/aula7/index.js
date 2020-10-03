@@ -51,15 +51,24 @@ function obterEndereco(idUsuario, callback) {
 // 1 - Adicionar a palavra async -> automaticamente ela retornará uma Promise
 async function main() {
     try {
+        console.time("media-promise")
         const usuario = await obterUsuario()
-        const telefone = await obterTelefone(usuario.id)
-        const endereco = await obterEnderecoAsync(usuario.id)
+        // const telefone = await obterTelefone(usuario.id)
+        // const endereco = await obterEnderecoAsync(usuario.id)
+        const resultado = await Promise.all([
+            obterTelefone(usuario.id),
+            obterEnderecoAsync(usuario.id)
+        ])
+        const endereco = resultado[1]
+        const telefone = resultado[0]
 
         console.log(`
             Nome: ${usuario.nome}
             Telefone: (${telefone.ddd}) ${telefone.telefone}
             Endereço: ${endereco.rua}, ${endereco.numero}
         `)
+        console.timeEnd("media-promise")
+
     } catch (error) {
         console.error("Deu ruim filhão", error)
     }
