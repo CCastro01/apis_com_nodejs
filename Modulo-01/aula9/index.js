@@ -14,3 +14,8 @@ meuEmissor.on(nomeEvento, function(click){
 
 meuEmissor.emit(nomeEvento,'na barra de rolagem')
 meuEmissor.emit(nomeEvento,'no ok')
+
+let count = 0
+setInterval(function(){
+    meuEmissor.emit(nomeEvento, 'no botão' + ( count++))
+}, 1000)
