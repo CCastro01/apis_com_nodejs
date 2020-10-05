@@ -7,10 +7,8 @@ async function obterPessoas(nome){
     return response.data
 }
 
-obterPessoas('r2')
-    .then(function(resultado){
-        console.log('resultado', resultado)
-    })
-    .catch(function(error){
-        console.log('Deu ruim mano', error)
-    })
+module.exports = {
+    // obterPessoas: obterPessoas
+    //se a chave do meu objeto for o mesmo nome do valor, não é necessário passar o valor
+    obterPessoas
+}
