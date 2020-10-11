@@ -1,5 +1,5 @@
 const axios = require('axios')
-const URL = `https://swapi.dev/api/people`
+const URL = `https://pokeapi.co/api/v2/pokemon`
 
 async function obterPessoas(nome){
     const url = `${URL}/?search=${nome}&format=json`
